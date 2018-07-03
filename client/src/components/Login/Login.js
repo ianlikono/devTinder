@@ -8,7 +8,7 @@ import { LoginButton, LoginContainer, LoginWrapper, RegisterWrapper } from './lo
 const buttonStyles = {
   width: 200,
   background: 'linear-gradient(262deg, #ff7854, #fd267d)',
-  borderColor: '#fd267d',
+  borderColor: '#ff7854',
   boxShadow: '0 3px 10px 0 rgba(0, 17, 25, 0.27)',
 };
 
@@ -63,7 +63,9 @@ Login Header
             </Button>
           </LoginButton>
           <Link to="/register">
-          <RegisterWrapper>Don't Have An Account?. Register Here</RegisterWrapper>
+            <RegisterWrapper>
+Missing An Account?. Register Here
+            </RegisterWrapper>
           </Link>
         </LoginContainer>
       </LoginWrapper>

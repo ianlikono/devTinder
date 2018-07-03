@@ -1,14 +1,18 @@
 import { Button, Input } from 'antd';
+import gql from 'graphql-tag';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { LoginButton, LoginContainer, LoginWrapper, RegisterWrapper } from '../Login/loginStyles';
+import {
+  LoginButton, LoginContainer, LoginWrapper, RegisterWrapper,
+} from '../Login/loginStyles';
 
 const buttonStyles = {
   width: 200,
   background: 'linear-gradient(262deg, #ff7854, #fd267d)',
-  borderColor: '#fd267d',
+  borderColor: '#ff7854',
   boxShadow: '0 3px 10px 0 rgba(0, 17, 25, 0.27)',
 };
 class Register extends Component {
@@ -27,8 +31,13 @@ class Register extends Component {
     this[name] = value;
   };
 
-  onSubmit = () => {
-    console.log(this.username, this.email, this.password);
+  onSubmit = async () => {
+    const { username, email, password } = this;
+    // eslint-disable-next-line
+    const response = await this.props.mutate({
+      variables: { username, email, password },
+    });
+    console.log(response);
   };
 
   render() {
@@ -80,4 +89,16 @@ ALready Have An Account?. Login Here
   }
 }
 
-export default observer(Register);
+const registerMutation = gql`
+  mutation($username: String!, $email: String!, $password: String!) {
+    register(username: $username, email: $email, password: $password) {
+      ok
+      errors {
+        path
+        message
+      }
+    }
+  }
+`;
+
+export default graphql(registerMutation)(observer(Register));
