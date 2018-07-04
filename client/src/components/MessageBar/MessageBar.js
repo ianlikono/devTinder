@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(262deg, #667eea 0%, #764ba2 100%);
   width: 20vw;
   height: 90vh;
   border-left: 1px solid #e5e9ec;
