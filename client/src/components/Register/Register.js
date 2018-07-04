@@ -74,7 +74,7 @@ Register Header
             style={{ width: 300, margin: 15 }}
           />
           <LoginButton>
-            <Button type="primary" size="large" style={buttonStyles} onClick={this.onSubmit}>
+            <Button  size="large" style={buttonStyles} onClick={this.onSubmit}>
               Register
             </Button>
           </LoginButton>

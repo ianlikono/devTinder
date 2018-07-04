@@ -23,7 +23,6 @@ const styles = {
 const Wrapper = styled.div`
   background: #d7dde5;
   width: 80vw;
-  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -58,7 +58,7 @@ Login Header
             style={{ width: 300 }}
           />
           <LoginButton>
-            <Button type="primary" size="large" style={buttonStyles} onClick={this.onSubmit}>
+            <Button size="large" style={buttonStyles} onClick={this.onSubmit}>
               LOGIN
             </Button>
           </LoginButton>
