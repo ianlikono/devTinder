@@ -1,6 +1,9 @@
 import { Card, Icon } from 'antd';
 import React from 'react';
 import styled from 'styled-components';
+import DistanceSlider from './DistanceSlider';
+import LevelSlider from './LevelSlider';
+import PlacesInput from './PlacesInput';
 
 const Wrapper = styled.div`
   height: 90vh;
@@ -24,8 +27,25 @@ export default () => (
 Dallas
       </span>
     </LocationWrapper>
-    <Card hoverable>
-Awesome
+    <Card hoverable style={{ margin: 8 }}>
+      <PlacesInput />
+    </Card>
+    <Card hoverable style={{ margin: 8 }}>
+      <h3>
+Distance In Miles
+      </h3>
+      <DistanceSlider />
+    </Card>
+    <Card hoverable style={{ margin: 8 }}>
+      <h3>
+Coding Level
+      </h3>
+      <LevelSlider />
+    </Card>
+    <Card hoverable style={{ margin: 8 }}>
+      <h1 style={{ textAlign: 'center', color: '#fd267d' }}>
+LOGOUT
+      </h1>
     </Card>
   </Wrapper>
 );
