@@ -14,7 +14,7 @@ class LevelSlider extends Component {
     const { disabled } = this.state;
     return (
       <div>
-        <Slider min={1} max={10} range step={1} defaultValue={[3, 6]} disabled={disabled} />
+        <Slider min={1} max={3} range step={1} defaultValue={[1, 3]} disabled={disabled} />
       </div>
     );
   }
