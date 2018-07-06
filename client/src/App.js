@@ -5,6 +5,7 @@ import Register from './components/Register/Register';
 import EditProfile from './pages/EditProfile';
 import Home from './pages/Home';
 import Match from './pages/Match';
+import Messages from './pages/Messages';
 import Profile from './pages/Profile';
 
 export default () => (
@@ -16,6 +17,7 @@ export default () => (
       <Route path="/match" exact component={Match} />
       <Route path="/profile/:userId" exact component={Profile} />
       <Route path="/profile/:userId/edit" exact component={EditProfile} />
+      <Route path="/messages/:teamId" exact component={Messages} />
     </Switch>
   </BrowserRouter>
 );

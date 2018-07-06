@@ -6,15 +6,9 @@ import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
 import {
-  LoginButton, LoginContainer, LoginWrapper, RegisterWrapper,
+  LoginButton, LoginContainer, LoginWrapper, RegisterWrapper, buttonStyles
 } from '../Login/loginStyles';
 
-const buttonStyles = {
-  width: 200,
-  background: 'linear-gradient(262deg, #ff7854, #fd267d)',
-  borderColor: '#ff7854',
-  boxShadow: '0 3px 10px 0 rgba(0, 17, 25, 0.27)',
-};
 class Register extends Component {
   constructor(props) {
     super(props);

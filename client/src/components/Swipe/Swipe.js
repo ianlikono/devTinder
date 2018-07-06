@@ -1,7 +1,7 @@
-import { Card } from 'antd';
+import { Card, Tag } from 'antd';
 import React, { Component } from 'react';
 import SwipeableViews from 'react-swipeable-views';
-import styled from 'styled-components';
+import { Expertise, Wrapper } from './SwipeStyles';
 
 const styles = {
   slide: {
@@ -20,13 +20,6 @@ const styles = {
   },
 };
 
-const Wrapper = styled.div`
-  background: #d7dde5;
-  width: 80vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 class Swipe extends Component {
   constructor(props) {
     super(props);
@@ -53,7 +46,7 @@ class Swipe extends Component {
   render() {
     return (
       <Wrapper>
-        <Card hoverable style={{ width: 450, height: 550 }}>
+        <Card hoverable style={{ width: 450, height: 600 }}>
           <SwipeableViews enableMouseEvents onChangeIndex={this.onSwipe}>
             <div style={Object.assign({}, styles.slide, styles.slide1)}>
 slide n°1
@@ -74,6 +67,66 @@ slide n°2
 slide n°3
             </div>
           </SwipeableViews>
+          <Expertise>
+            <b>
+EXPERT:
+            </b>
+            {' '}
+            <Tag color="red">
+Closures
+            </Tag>
+            {' '}
+            <Tag color="red">
+Promises
+            </Tag>
+            <Tag color="red">
+Async Await
+            </Tag>
+          </Expertise>
+          <Expertise>
+            <b>
+INTERMEDIATE:
+            </b>
+            {' '}
+            <Tag color="blue">
+REACT
+            </Tag>
+            {' '}
+            <Tag color="blue">
+VUE
+            </Tag>
+            <Tag color="blue">
+HOF
+            </Tag>
+            <Tag color="blue">
+Mobx
+            </Tag>
+            <Tag color="blue">
+Css
+            </Tag>
+          </Expertise>
+          <Expertise>
+            <b>
+              {' '}
+Beginner:
+            </b>
+            {' '}
+            <Tag color="green">
+SQL
+            </Tag>
+            <Tag color="green">
+HOCs
+            </Tag>
+            <Tag color="green">
+Apollo
+            </Tag>
+            <Tag color="green">
+Redux
+            </Tag>
+            <Tag color="green">
+Authentication
+            </Tag>
+          </Expertise>
         </Card>
       </Wrapper>
     );

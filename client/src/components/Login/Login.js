@@ -3,14 +3,9 @@ import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { LoginButton, LoginContainer, LoginWrapper, RegisterWrapper } from './loginStyles';
+import { LoginButton, LoginContainer, LoginWrapper, RegisterWrapper, buttonStyles } from './loginStyles';
 
-const buttonStyles = {
-  width: 200,
-  background: 'linear-gradient(262deg, #ff7854, #fd267d)',
-  borderColor: '#ff7854',
-  boxShadow: '0 3px 10px 0 rgba(0, 17, 25, 0.27)',
-};
+
 
 class Login extends Component {
   constructor(props) {

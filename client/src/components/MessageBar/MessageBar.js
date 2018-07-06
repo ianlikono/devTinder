@@ -1,4 +1,6 @@
+import { Card } from 'antd';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -11,8 +13,22 @@ const Wrapper = styled.div`
 
 export default () => (
   <Wrapper>
-    <h1>
-Message Bar
-    </h1>
+    <Link to="/messages/1">
+      <Card hoverable style={{ margin: 10, marginTop: 100 }}>
+        <h3 style={{ color: 'red' }}>
+ONGOING
+        </h3>
+        <h2>
+Closures With Someone
+        </h2>
+      </Card>
+    </Link>
+    <Link to="/profile/23">
+      <Card hoverable style={{ margin: 10, marginTop: 100 }}>
+        <h2 style={{ color: '#fd267d' }}>
+UPDATE PROFILE
+        </h2>
+      </Card>
+    </Link>
   </Wrapper>
 );

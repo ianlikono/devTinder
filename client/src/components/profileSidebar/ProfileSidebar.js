@@ -1,5 +1,6 @@
 import { Card, Icon } from 'antd';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import DistanceSlider from './DistanceSlider';
 import LevelSlider from './LevelSlider';
@@ -42,6 +43,13 @@ Coding Level
       </h3>
       <LevelSlider />
     </Card>
+    <Link to="/match">
+      <Card hoverable style={{ margin: 8 }}>
+        <h1 style={{ textAlign: 'center', color: '#fd267d' }}>
+HOME
+        </h1>
+      </Card>
+    </Link>
     <Card hoverable style={{ margin: 8 }}>
       <h1 style={{ textAlign: 'center', color: '#fd267d' }}>
 LOGOUT

@@ -8,6 +8,7 @@ export default `
         lng: Float!
         pic: String!
         teams: Team!
+
     }
 
     type RegisterResponse {
@@ -25,3 +26,5 @@ export default `
     }
 
 `;
+
+// add type profile to user

@@ -36,3 +36,11 @@ export const RegisterWrapper = styled.p`
   margin: 0%;
   font-family: 'Open Sans', sans-serif;
 `;
+
+export const buttonStyles = {
+  width: 200,
+  background: 'linear-gradient(262deg, #ff7854, #fd267d)',
+  borderColor: '#ff7854',
+  boxShadow: '0 3px 10px 0 rgba(0, 17, 25, 0.27)',
+  color: '#fff'
+};
