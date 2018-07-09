@@ -1,11 +1,9 @@
-import { Button, Input } from 'antd';
+import { Button, Icon, Input } from 'antd';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { LoginButton, LoginContainer, LoginWrapper, RegisterWrapper, buttonStyles } from './loginStyles';
-
-
+import { buttonStyles, LoginButton, LoginContainer, LoginWrapper, RegisterWrapper } from './loginStyles';
 
 class Login extends Component {
   constructor(props) {
@@ -36,6 +34,7 @@ class Login extends Component {
 Login Header
           </h2>
           <Input
+            prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
             value={email}
             name="email"
             onChange={this.onChange}
@@ -44,6 +43,7 @@ Login Header
             style={{ width: 300, margin: 25 }}
           />
           <Input
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
             value={password}
             name="password"
             type="password"

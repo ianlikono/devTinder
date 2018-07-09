@@ -44,3 +44,6 @@ export const buttonStyles = {
   boxShadow: '0 3px 10px 0 rgba(0, 17, 25, 0.27)',
   color: '#fff'
 };
+export const ErrorsWrapper = styled.h3`
+  color: blue;
+`
