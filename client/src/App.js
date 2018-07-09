@@ -1,5 +1,8 @@
+import decode from 'jwt-decode';
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter, Redirect, Route, Switch,
+} from 'react-router-dom';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import EditProfile from './pages/EditProfile';
@@ -8,16 +11,45 @@ import Match from './pages/Match';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
 
+const isAuthenticated = () => {
+  const token = localStorage.getItem('token');
+  const refreshToken = localStorage.getItem('refreshToken');
+  try {
+    decode(token);
+    decode(refreshToken);
+  } catch (err) {
+    return false;
+  }
+
+  return true;
+};
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props => (isAuthenticated() ? (
+      <Component {...props} />
+    ) : (
+      <Redirect
+        to={{
+          pathname: '/login',
+        }}
+      />
+    ))
+    }
+  />
+);
+
 export default () => (
   <BrowserRouter>
     <Switch>
       <Route path="/" exact component={Home} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
-      <Route path="/match" exact component={Match} />
-      <Route path="/profile/:userId" exact component={Profile} />
-      <Route path="/profile/:userId/edit" exact component={EditProfile} />
-      <Route path="/messages/:teamId" exact component={Messages} />
+      <PrivateRoute path="/match" exact component={Match} />
+      <PrivateRoute path="/profile/:userId" exact component={Profile} />
+      <PrivateRoute path="/profile/:userId/edit" exact component={EditProfile} />
+      <PrivateRoute path="/messages/:teamId" exact component={Messages} />
     </Switch>
   </BrowserRouter>
 );

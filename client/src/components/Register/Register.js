@@ -1,11 +1,19 @@
-import { Button, Form, Icon, Input } from 'antd';
+import {
+  Button, Form, Icon, Input,
+} from 'antd';
 import gql from 'graphql-tag';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { buttonStyles, LoginButton, LoginContainer, LoginWrapper, RegisterWrapper } from '../Login/loginStyles';
+import {
+  buttonStyles,
+  LoginButton,
+  LoginContainer,
+  LoginWrapper,
+  RegisterWrapper,
+} from '../Login/loginStyles';
 
 const FormItem = Form.Item;
 
@@ -24,6 +32,7 @@ class Register extends Component {
   onChange = (e) => {
     const { name, value } = e.target;
     this[name] = value;
+    this.errors = {};
   };
 
   onSubmit = async () => {
@@ -37,16 +46,16 @@ class Register extends Component {
 
     if (ok) {
       const { history } = this.props;
-      history.push('/match');
+      history.push('/login');
     } else {
       const err = {};
       errors.forEach(({ path, message }) => {
         err[`${path}Error`] = message;
       });
       this.errors = err;
-      console.log(err);
+      // console.log(err);
     }
-    console.log(response);
+    // console.log(response);
   };
 
   render() {
@@ -56,7 +65,6 @@ class Register extends Component {
       password,
       errors: { emailError, passwordError, usernameError },
     } = this;
-
 
     return (
       <LoginWrapper>
