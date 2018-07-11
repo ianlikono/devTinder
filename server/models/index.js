@@ -15,11 +15,13 @@ const sequelize = new Sequelize(
 
 const models = {
   User: sequelize.import('./user'),
-  //   Member: sequelize.import('./member'),
   Team: sequelize.import('./team'),
-  //   Topic: sequelize.import('./topic'),
-  //   UserLikes: sequelize.import('./userLikes'),
-  //   userDislikes: sequelize.import('./userDislikes'),
+  Topic: sequelize.import('./topic'),
+  Profile: sequelize.import('./profile'),
+  Pic: sequelize.import('./pic'),
+  Message: sequelize.import('./message'),
+  Member: sequelize.import('./member'),
+  Level: sequelize.import('./level'),
 };
 
 Object.keys(models).forEach((modelName) => {

@@ -28,6 +28,7 @@ export default (sequelize, DataTypes) => {
           },
         },
       },
+      location: DataTypes.STRING,
       password: {
         type: DataTypes.STRING,
         validate: {
@@ -51,12 +52,15 @@ export default (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.belongsToMany(models.Team, {
-      through: 'member',
+      through: models.Member,
       foreignKey: {
         name: 'userId',
         field: 'user_id',
       },
     });
+
+    User.hasMany(User, { as: 'likes' });
+    User.hasMany(User, { as: 'dislikes' });
   };
 
   return User;
