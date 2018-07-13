@@ -1,8 +1,6 @@
 import decode from 'jwt-decode';
 import React from 'react';
-import {
-  BrowserRouter, Redirect, Route, Switch,
-} from 'react-router-dom';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import EditProfile from './pages/EditProfile';

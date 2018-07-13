@@ -1,6 +1,4 @@
-import {
-  Button, Card, Icon, Input, Modal, Tag,
-} from 'antd';
+import { Button, Card, Icon, Input, Modal, Tag } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
@@ -54,7 +52,7 @@ class EditProfile extends React.Component {
         </Link>
         <Card hoverable style={{ width: 450, height: 600 }}>
           <ImageWrapper>
-            <Card hoverasble style={{ width: 200, height: 200, marginTop: 3 }}>
+            <Card hoverable style={{ width: 200, height: 200, marginTop: 3 }}>
               <ImageUpload />
             </Card>
             <Card hoverable style={{ width: 200, height: 200, marginTop: 3 }}>

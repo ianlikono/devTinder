@@ -2,8 +2,6 @@ import { Card, Icon } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import DistanceSlider from './DistanceSlider';
-import LevelSlider from './LevelSlider';
 import PlacesInput from './PlacesInput';
 
 const Wrapper = styled.div`
@@ -31,18 +29,7 @@ Dallas
     <Card hoverable style={{ margin: 8 }}>
       <PlacesInput />
     </Card>
-    <Card hoverable style={{ margin: 8 }}>
-      <h3>
-Distance In Miles
-      </h3>
-      <DistanceSlider />
-    </Card>
-    <Card hoverable style={{ margin: 8 }}>
-      <h3>
-Coding Level
-      </h3>
-      <LevelSlider />
-    </Card>
+
     <Link to="/match">
       <Card hoverable style={{ margin: 8 }}>
         <h1 style={{ textAlign: 'center', color: '#fd267d' }}>
