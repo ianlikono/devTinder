@@ -1,16 +1,16 @@
 export default `
-    type Topic {
+    type Level {
         id: Int!
         name: String!
     }
 
-    type CreateTopicResponse {
+    type CreateLevelResponse {
         ok: Boolean!
-        topic: Topic
+        level: Level
         errors: [Error!]
     }
 
     type Mutation {
-        createTopic(name: String!): CreateTopicResponse!
+        createLevel(name: String!): CreateLevelResponse!
       }
 `;

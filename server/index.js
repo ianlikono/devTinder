@@ -56,10 +56,16 @@ app.use(
     schema,
     context: {
       models,
-      user: req.user,
-      SECRET,
-      SECRET2,
+      user: {
+        id: 1,
+      },
     },
+    // context: {
+    //   models,
+    //   user: req.user,
+    //   SECRET,
+    //   SECRET2,
+    // },
   })),
 );
 

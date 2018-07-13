@@ -6,12 +6,12 @@ export default {
   //   allTopics: (parent, args, { models }) => models.Topic.findAll(),
   // },
   Mutation: {
-    createTopic: (parent, args, { models }) => {
+    createLevel: (parent, args, { models }) => {
       try {
-        const topic = models.Topic.create(args);
+        const level = models.Level.create(args);
         return {
           ok: true,
-          topic,
+          level,
         };
       } catch (err) {
         return {

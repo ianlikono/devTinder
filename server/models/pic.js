@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const Pic = sequelize.define('message', {
+  const Pic = sequelize.define('pic', {
     url: DataTypes.STRING,
   });
 

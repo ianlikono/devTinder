@@ -1,13 +1,17 @@
 export default `
     type Profile {
-        owner: [User!]!
-        location: String!
-        expert: [Topic!]
-        intermediate: [Topic!]
-        beginner: [Topic!]
-        pics: [Pic]
+        user: User!
+        topics: [Topic]
+        levels: [Level]
     }
+
+    type createProfileResponse {
+        ok: Boolean!
+        profile: Profile
+        errors: [Error!]
+    }
+
     type Mutation {
-        createProfile(userId: Int!, location: String!): Boolean!
+        createProfile(topicId: Int, levelId: Int): createProfileResponse!
       }
 `;

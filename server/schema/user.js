@@ -3,12 +3,12 @@ export default `
         id: Int!
         username: String!
         email: String!
-        phone: Int!
-        lat: Float!
-        lng: Float!
-        pic: String!
-        teams: Team!
-
+        location: String!
+        pic: [Pic]
+        teams: [Team]
+        expert: [Topic]
+        intermediate: [Topic]
+        beginner: [Topic]
     }
 
     type RegisterResponse {
@@ -33,7 +33,4 @@ export default `
         register(username: String!, email: String!, password: String!): RegisterResponse!
         login(email: String!, password: String!): LoginResponse!
     }
-
 `;
-
-// add type profile to user

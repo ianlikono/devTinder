@@ -5,6 +5,6 @@ export default `
         team: Team!
     }
     type Mutation {
-        createMessage(text: String!): Boolean!
+        createMessage(teamId: Int!, text: String!): Boolean!
       }
 `;
