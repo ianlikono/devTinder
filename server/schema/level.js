@@ -10,6 +10,11 @@ export default `
         errors: [Error!]
     }
 
+    type Query {
+        allLevels: [Level!]!
+        getLevel(id: Int!): Level!
+    }
+
     type Mutation {
         createLevel(name: String!): CreateLevelResponse!
       }

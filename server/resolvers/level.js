@@ -1,10 +1,10 @@
 import formatErrors from '../formatErrors';
 
 export default {
-  // Query: {
-  //   getUser: (parent, { id }, { models }) => models.Topic.findOne({ where: { id } }),
-  //   allTopics: (parent, args, { models }) => models.Topic.findAll(),
-  // },
+  Query: {
+    allLevels: (parent, args, { models }) => models.Level.findAll(),
+    getLevel: (parent, { id }, { models }) => models.Level.findOne({ where: { id } }),
+  },
   Mutation: {
     createLevel: (parent, args, { models }) => {
       try {

@@ -10,6 +10,10 @@ export default `
         errors: [Error!]
     }
 
+    type Query {
+        allTopics: [Topic!]!
+    }
+
     type Mutation {
         createTopic(name: String!): CreateTopicResponse!
       }
