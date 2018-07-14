@@ -1,8 +1,12 @@
-import { Button, Card, Icon, Input, Modal, Tag } from 'antd';
+import { Button, Card, Icon, Modal } from 'antd';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
 import { buttonStyles, ImageWrapper, Wrapper } from './ProfileSwipeStyles';
+import Topics from './Topics';
+import Beginner from './topicsDisplay/Beginner';
+import Expert from './topicsDisplay/Expert';
+import Intermediate from './topicsDisplay/Intermediate';
 
 class EditProfile extends React.Component {
   constructor(props) {
@@ -10,25 +14,69 @@ class EditProfile extends React.Component {
 
     this.state = {
       ModalText: 'Input Something',
-      visible: false,
+      visibleBeg: false,
+      visibleInt: false,
+      visibleExp: false,
       confirmLoading: false,
+      beginnerId: 1,
+      intermediateId: 2,
+      ExpertId: 3,
     };
   }
 
-  showModal = () => {
+  showModalBeg = () => {
     this.setState({
-      visible: true,
+      visibleBeg: true,
     });
   };
 
-  handleOk = () => {
+  showModalInt = () => {
     this.setState({
-      ModalText: 'The modal will be closed after two seconds',
+      visibleInt: true,
+    });
+  };
+
+  showModalExp = () => {
+    this.setState({
+      visibleExp: true,
+    });
+  };
+
+  handleOkBeg = () => {
+    this.setState({
+      ModalText: 'Please Wait For A Minute',
+      confirmLoading: true,
+    });
+
+    setTimeout(() => {
+      this.setState({
+        visibleBeg: false,
+        confirmLoading: false,
+      });
+    }, 2000);
+  };
+
+  handleOkInt = () => {
+    this.setState({
+      ModalText: 'Please Wait For A Minute',
       confirmLoading: true,
     });
     setTimeout(() => {
       this.setState({
-        visible: false,
+        visibleInt: false,
+        confirmLoading: false,
+      });
+    }, 2000);
+  };
+
+  handleOkExp = () => {
+    this.setState({
+      ModalText: 'Please Wait For A Minute',
+      confirmLoading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        visibleExp: false,
         confirmLoading: false,
       });
     }, 2000);
@@ -37,12 +85,14 @@ class EditProfile extends React.Component {
   handleCancel = () => {
     console.log('Clicked cancel button');
     this.setState({
-      visible: false,
+      visibleExp: false,
+      visibleInt: false,
+      visibleBeg: false,
     });
   };
 
   render() {
-    const { visible, confirmLoading, ModalText } = this.state;
+    const { visibleBeg, visibleInt, visibleExp, confirmLoading, ModalText, beginnerId, intermediateId, ExpertId } = this.state;
     return (
       <Wrapper>
         <Link to="/profile/23">
@@ -66,9 +116,10 @@ class EditProfile extends React.Component {
             </Card>
           </ImageWrapper>
 
-          <h2
+          <h4
             style={{
               margin: 15,
+              marginLeft: 0,
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
@@ -76,35 +127,25 @@ class EditProfile extends React.Component {
           >
             Expert:
             {' '}
-            <Tag color="red">
-closures
-            </Tag>
-            <Tag color="red">
-Promises
-            </Tag>
-            <Tag color="red">
-async
-            </Tag>
-            <Tag color="red">
-react
-            </Tag>
-            <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModal} />
-          </h2>
+            <Expert ExpertId={ExpertId} />
+            <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalExp} />
+          </h4>
           <Modal
             title="Title"
-            visible={visible}
-            onOk={this.handleOk}
+            visible={visibleExp}
+            onOk={this.handleOkExp}
             confirmLoading={confirmLoading}
             onCancel={this.handleCancel}
           >
             <p>
               {ModalText}
-              <Input placeholder="Add Topic" />
+              <Topics ExpertId={ExpertId} />
             </p>
           </Modal>
-          <h2
+          <h4
             style={{
               margin: 15,
+              marginLeft: 0,
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
@@ -112,44 +153,47 @@ react
           >
             Intermediate:
             {' '}
-            <Tag color="blue">
-Vue
-            </Tag>
-            <Tag color="blue">
-Auth0
-            </Tag>
-            <Tag color="blue">
-SQL
-            </Tag>
-            <Tag color="blue">
-Mongo
-            </Tag>
-            <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModal} />
-          </h2>
-          <h2
+            <Intermediate intermediateId={intermediateId}/>
+            <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalInt} />
+          </h4>
+          <Modal
+            title="Title"
+            visible={visibleInt}
+            onOk={this.handleOkInt}
+            confirmLoading={confirmLoading}
+            onCancel={this.handleCancel}
+          >
+            <p>
+              {ModalText}
+              <Topics intermediateId={intermediateId} />
+            </p>
+          </Modal>
+          <h4
             style={{
               margin: 15,
+              marginLeft: 0,
               display: 'flex',
               flexWrap: 'wrap',
               alignItems: 'center',
             }}
           >
-            Begginner:
+            Beginner
             {' '}
-            <Tag color="green">
-Vue
-            </Tag>
-            <Tag color="green">
-Auth0
-            </Tag>
-            <Tag color="green">
-SQL
-            </Tag>
-            <Tag color="green">
-Mongo
-            </Tag>
-            <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModal} />
-          </h2>
+            <Beginner beginnerId={beginnerId} />
+            <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalBeg} />
+          </h4>
+          <Modal
+            title="Title"
+            visible={visibleBeg}
+            onOk={this.handleOkBeg}
+            confirmLoading={confirmLoading}
+            onCancel={this.handleCancel}
+          >
+            <p>
+              {ModalText}
+              <Topics beginnerId={beginnerId} />
+            </p>
+          </Modal>
         </Card>
       </Wrapper>
     );
