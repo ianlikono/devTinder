@@ -3,6 +3,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PlacesInput from './PlacesInput';
+import UserLocation from './UserLocation';
+import Username from './Username';
 
 const Wrapper = styled.div`
   height: 90vh;
@@ -14,16 +16,19 @@ const Wrapper = styled.div`
 
 const LocationWrapper = styled.div`
   margin: 1%;
-  display: flex;
-  align-items: center;
 `;
 
-export default () => (
+const ProfileSidebar = () => (
   <Wrapper>
+    <h2 style={{ color: 'green' }}>
+      Hello
+      {' '}
+      <Username />
+    </h2>
     <LocationWrapper>
-      <Icon type="environment" style={{ fontSize: 25, color: '#fd267d' }} />
-      <span style={{ margin: '5%', fontSize: 24 }}>
-Dallas
+      <Icon type="environment" style={{ fontSize: 25, marginTop: 0, color: '#fd267d' }} />
+      <span style={{ margin: '5%', marginTop: 0, fontSize: 24 }}>
+        <UserLocation />
       </span>
     </LocationWrapper>
     <Card hoverable style={{ margin: 8 }}>
@@ -44,3 +49,4 @@ LOGOUT
     </Card>
   </Wrapper>
 );
+export default ProfileSidebar;

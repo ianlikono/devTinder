@@ -45,6 +45,7 @@ export default () => (
           }}
         />
       </MessageHolder>
+
       <MessagesWrapper>
         <Sender>
           <Avatar

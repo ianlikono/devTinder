@@ -92,7 +92,16 @@ class EditProfile extends React.Component {
   };
 
   render() {
-    const { visibleBeg, visibleInt, visibleExp, confirmLoading, ModalText, beginnerId, intermediateId, ExpertId } = this.state;
+    const {
+      visibleBeg,
+      visibleInt,
+      visibleExp,
+      confirmLoading,
+      ModalText,
+      beginnerId,
+      intermediateId,
+      ExpertId,
+    } = this.state;
     return (
       <Wrapper>
         <Link to="/profile/23">
@@ -153,7 +162,7 @@ class EditProfile extends React.Component {
           >
             Intermediate:
             {' '}
-            <Intermediate intermediateId={intermediateId}/>
+            <Intermediate intermediateId={intermediateId} />
             <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalInt} />
           </h4>
           <Modal

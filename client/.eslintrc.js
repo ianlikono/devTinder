@@ -7,6 +7,8 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 0,
     'prefer-destructuring': 0,
     'react/destructuring-assignment': 0,
+    'react/prefer-stateless-function': 0,
+    'no-useless-constructor': 0,
   },
   globals: {
     document: 1,

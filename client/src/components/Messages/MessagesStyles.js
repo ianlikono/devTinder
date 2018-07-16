@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 export const MessagesContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
+  overflow-y: auto;
 `;
 
 export const MessagesWrapper = styled.div`
@@ -29,4 +30,8 @@ export const Receiver = styled.div`
 `;
 export const MessageHolder = styled.div`
   display: flex;
+`;
+
+export const Messages = styled.div`
+  overflow-y: auto;
 `;

@@ -1,16 +1,8 @@
 import { Tag } from 'antd';
-import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
+import { ProfileTopicsQuery } from '../../../graphql/topics';
 
-const ProfileTopicsQuery = gql`
-  query getProfileTopics($levelId: Int!) {
-    getProfileTopics(levelId: $levelId) {
-      id
-      name
-    }
-  }
-`;
 class Beginner extends Component {
   constructor(props) {
     super(props);

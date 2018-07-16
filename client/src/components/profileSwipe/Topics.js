@@ -2,6 +2,7 @@ import { Select } from 'antd';
 import gql from 'graphql-tag';
 import React, { Component } from 'react';
 import { graphql, Query } from 'react-apollo';
+import { ProfileTopicsQuery } from '../../graphql/topics';
 
 const TopicsQuery = gql`
   {
@@ -24,15 +25,19 @@ class Topics extends Component {
     const { levelId } = this.state;
     const topicId = value;
     // console.log(`topicId ${value} levelId ${levelId}`);
-    const response = await this.props.mutate({
+    await this.props.mutate({
       variables: { topicId, levelId },
+      refetchQueries: [
+        {
+          query: ProfileTopicsQuery,
+          variables: { levelId },
+        },
+      ],
     });
-    console.log(response);
   };
 
   render() {
     const Option = Select.Option;
-
     return (
       <Query query={TopicsQuery}>
         {({ loading, error, data }) => {
