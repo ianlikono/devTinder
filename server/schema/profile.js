@@ -4,17 +4,13 @@ export default `
         topics: [Topic]
         levels: [Level]
     }
-
     type createProfileResponse {
         ok: Boolean!
-        profile: Profile
         errors: [Error!]
     }
-
     type Query {
         getProfileTopics(levelId: Int!): [Topic]
     }
-
     type Mutation {
         createProfile(topicId: Int, levelId: Int): createProfileResponse!
       }

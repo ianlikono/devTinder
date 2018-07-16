@@ -2,14 +2,17 @@ import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import express from 'express';
+import { execute, subscribe } from 'graphql';
 import { makeExecutableSchema } from 'graphql-tools';
+import { createServer } from 'http';
 import jwt from 'jsonwebtoken';
 import { fileLoader, mergeResolvers, mergeTypes } from 'merge-graphql-schemas';
 import path from 'path';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { refreshTokens } from './auth';
 import models from './models';
 
-const { SECRET, SECRET2 } = process.env;
+const { SECRET, SECRET2, PORT } = process.env;
 
 require('dotenv').config();
 
@@ -71,6 +74,21 @@ app.use(
 
 app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
 
+const server = createServer(app);
+
 models.sequelize.sync({}).then(() => {
-  app.listen(process.env.PORT);
+  server.listen(PORT, () => {
+    // eslint-disable-next-line no-new
+    new SubscriptionServer(
+      {
+        execute,
+        subscribe,
+        schema,
+      },
+      {
+        server,
+        path: '/subscriptions',
+      },
+    );
+  });
 });

@@ -28,7 +28,10 @@ export default (sequelize, DataTypes) => {
           },
         },
       },
-      location: DataTypes.STRING,
+      location: {
+        type: DataTypes.STRING,
+        defaultValue: 'Input Location',
+      },
       password: {
         type: DataTypes.STRING,
         validate: {
