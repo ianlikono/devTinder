@@ -1,10 +1,15 @@
 /* eslint-disable */
 
 import { Card, Icon, Input } from 'antd';
+import gql from 'graphql-tag';
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { getUserQuery } from '../../graphql/topics';
 import { classnames } from './helpers';
 import { Container, Wrapper } from './SearchStyles';
+
+
 
 class PlacesSearch extends Component {
   constructor(props) {
@@ -12,29 +17,26 @@ class PlacesSearch extends Component {
     this.state = {
       address: '',
       errorMessage: '',
-      latitude: null,
-      longitude: null,
       isGeocoding: false,
+      id: this.props.id,
     };
   }
+
+
 
   handleChange = address => {
     this.setState({
       address,
-      latitude: null,
-      longitude: null,
       errorMessage: '',
     });
   };
 
-  handleSelect = selected => {
+  handleSelect = async(selected) => {
     this.setState({ isGeocoding: true, address: selected });
     geocodeByAddress(selected)
       .then(res => getLatLng(res[0]))
       .then(({ lat, lng }) => {
         this.setState({
-          latitude: lat,
-          longitude: lng,
           isGeocoding: false,
         });
       })
@@ -44,11 +46,19 @@ class PlacesSearch extends Component {
       });
   };
 
-  handleCloseClick = () => {
+  handleLocationUpdate= () => {
+    const { address, id} = this.state;
+      this.props.mutate({
+      variables: { location: address },
+      refetchQueries: [
+        {
+          query: getUserQuery,
+          variables: { id: id },
+        },
+      ],
+    })
     this.setState({
       address: '',
-      latitude: null,
-      longitude: null,
     });
   };
 
@@ -60,8 +70,7 @@ class PlacesSearch extends Component {
   };
 
   render() {
-    const { address, errorMessage, latitude, longitude, isGeocoding } = this.state;
-
+    const { address } = this.state;
     return (
       <Wrapper>
         <PlacesAutocomplete
@@ -82,9 +91,9 @@ class PlacesSearch extends Component {
                   />
                   {this.state.address.length > 0 && (
                     <Icon
-                      type="close-circle"
-                      onClick={this.handleCloseClick}
-                      style={{ fontSize: 25, color: '#e80000', cursor: 'pointer' }}
+                      type="check-square"
+                      onClick={this.handleLocationUpdate}
+                      style={{ fontSize: 30, color: 'green', cursor: 'pointer' }}
                     />
                   )}
                 </Container>
@@ -116,32 +125,16 @@ class PlacesSearch extends Component {
             );
           }}
         </PlacesAutocomplete>
-        {errorMessage.length > 0 && <div style={{ color: 'red' }}>{this.state.errorMessage}</div>}
 
-        {((latitude && longitude) || isGeocoding) && (
-          <div>
-            <h3>Geocode result</h3>
-            {isGeocoding ? (
-              <div>
-                <i className="fa fa-spinner fa-pulse fa-3x fa-fw " />
-              </div>
-            ) : (
-              <div>
-                <div>
-                  <label>Latitude:</label>
-                  <span>{latitude}</span>
-                </div>
-                <div>
-                  <label>Longitude:</label>
-                  <span>{longitude}</span>
-                </div>
-              </div>
-            )}
-          </div>
-        )}
       </Wrapper>
     );
   }
 }
 
-export default PlacesSearch;
+const updateLocationMutation = gql`
+  mutation($location: String!) {
+    updateLocation(location: $location)
+  }
+`;
+
+export default graphql(updateLocationMutation)(PlacesSearch);

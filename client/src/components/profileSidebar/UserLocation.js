@@ -3,15 +3,17 @@ import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import { getUserQuery } from '../../graphql/topics';
 
-const userId = () => {
-  const token = localStorage.getItem('token');
-  const { user } = decode(token);
-  return user.id;
-};
-const id = userId();
 
 class UserLocation extends Component {
+  userId = () => {
+    const token = localStorage.getItem('token');
+    const { user } = decode(token);
+    return user.id;
+  };
+
   render() {
+    const id = this.userId();
+
     return (
       <Query
         query={getUserQuery}
