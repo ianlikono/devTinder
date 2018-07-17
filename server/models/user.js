@@ -49,6 +49,11 @@ export default (sequelize, DataTypes) => {
           // eslint-disable-next-line no-param-reassign
           user.password = hashedPassword;
         },
+        beforeUpdate: async (user) => {
+          const updatedLocation = await String(user.location);
+          // eslint-disable-next-line no-param-reassign
+          user.location = updatedLocation;
+        },
       },
     },
   );

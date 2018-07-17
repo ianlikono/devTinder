@@ -14,6 +14,7 @@ import models from './models';
 
 const { SECRET, SECRET2, PORT } = process.env;
 
+
 require('dotenv').config();
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
@@ -92,3 +93,4 @@ models.sequelize.sync({}).then(() => {
     );
   });
 });
+

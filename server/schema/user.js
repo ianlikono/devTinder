@@ -24,7 +24,7 @@ export default `
         errors: [Error!]
     }
 
-    type Query {
+   type Query {
         getUser(id: Int!): User!
         allUsers: [User!]!
     }
@@ -32,5 +32,6 @@ export default `
     type Mutation {
         register(username: String!, email: String!, password: String!): RegisterResponse!
         login(email: String!, password: String!): LoginResponse!
+        updateLocation(location: String!): Boolean!
     }
 `;

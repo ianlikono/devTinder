@@ -22,5 +22,10 @@ export default {
         };
       }
     },
+    //eslint-disable-next-line
+    updateLocation: (parent, args, { models, user }) => models.sequelize.query("update users set location = '" +  args.location  + "' where id = "  + user.id , {
+      model: models.User,
+      raw: true,
+    }),
   },
 };
