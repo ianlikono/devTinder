@@ -7,7 +7,7 @@ export default {
     getProfileTopics: (parent, args, { models, user }) => models.sequelize.query(
       `select topics.name, topics.id from topics join profiles on profiles.topic_id = topics.id join users on users.id = profiles.user_id where users.id = ${
         user.id
-      } and profiles.level_id = ${args.levelId}`,
+      } `,
       {
         model: models.Topic,
         raw: true,

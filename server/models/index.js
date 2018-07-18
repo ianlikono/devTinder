@@ -22,6 +22,7 @@ const models = {
   Message: sequelize.import('./message'),
   Member: sequelize.import('./member'),
   Level: sequelize.import('./level'),
+  Preference: sequelize.import('./preference'),
 };
 
 Object.keys(models).forEach((modelName) => {

@@ -17,6 +17,7 @@ export default `
 
     type Query {
         getPic(id: Int!): Pic
+        getUserPics(userId: Int):[Pic]
     }
 
     type Mutation {

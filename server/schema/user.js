@@ -4,7 +4,7 @@ export default `
         username: String!
         email: String!
         location: String!
-        pic: [Pic]
+        pics: [Pic]
         teams: [Team]
         expert: [Topic]
         intermediate: [Topic]
@@ -24,12 +24,15 @@ export default `
         errors: [Error!]
     }
 
+
    type Query {
         getUser(id: Int!): User!
         allUsers: [User!]!
+        countAllUsers: Int!
+        getUsersToMatch(location: String!): [User!]
     }
 
-    type Mutation {
+   type Mutation {
         register(username: String!, email: String!, password: String!): RegisterResponse!
         login(email: String!, password: String!): LoginResponse!
         updateLocation(location: String!): Boolean!

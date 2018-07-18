@@ -66,9 +66,6 @@ export default (sequelize, DataTypes) => {
         field: 'user_id',
       },
     });
-
-    User.hasMany(User, { as: 'likes' });
-    User.hasMany(User, { as: 'dislikes' });
   };
 
   return User;

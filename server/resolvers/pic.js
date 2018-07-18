@@ -6,6 +6,11 @@ const { s3Bucket } = process.env;
 export default {
   Query: {
     getPic: (parent, { id }, { models }) => models.Pic.findOne({ where: { id } }),
+    getUserPics: (parent, args, { models }) => models.sequelize.query(`select distinct url from pics where user_id= ${args.userId} limit 4;`,
+      {
+        model: models.Pic,
+        raw: true,
+      }),
   },
   Mutation: {
     signS3: async (parent, { filename, filetype }) => {
