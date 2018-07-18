@@ -10,5 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Expertise = styled.div`
-margin: 8px !important;
+     margin: 8px;
+     height: 100%;
+     margin-bottom: 3%;
 `;

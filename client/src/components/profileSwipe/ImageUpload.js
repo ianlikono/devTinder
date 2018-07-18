@@ -1,4 +1,4 @@
-import { Icon, Modal, Upload } from 'antd';
+import { Button, Icon, Modal, Upload } from 'antd';
 import axios from 'axios';
 import gql from 'graphql-tag';
 import moment from 'moment';
@@ -10,6 +10,8 @@ class ImageUpload extends Component {
     previewVisible: false,
     previewImage: '',
     fileList: [],
+    uploadButton: false,
+    uploaded: false,
   };
 
   handleCancel = () => this.setState({ previewVisible: false });
@@ -40,24 +42,26 @@ class ImageUpload extends Component {
     return newFilename.substring(0, 60);
   };
 
-  handleChange = async ({ fileList }) => {
-    this.setState({ fileList });
+  handleChange = ({ fileList }) => {
+    this.setState({ fileList, uploadButton: true });
+  };
+
+  PicUpload = async () => {
     const response = await this.props.s3Sign({
       variables: {
-        filename: this.formatFilename(fileList[0].originFileObj.name),
-        filetype: fileList[0].originFileObj.type,
+        filename: this.formatFilename(this.state.fileList[0].originFileObj.name),
+        filetype: this.state.fileList[0].originFileObj.type,
       },
     });
     const { signedRequest, url } = response.data.signS3;
-    await this.uploadToS3(fileList[0].originFileObj, signedRequest);
-    const graphqlResponse = await this.props.createPic({
+    await this.uploadToS3(this.state.fileList[0].originFileObj, signedRequest);
+    await this.props.createPic({
       variables: {
         url,
       },
     });
-    console.log(graphqlResponse.data.createPic.pic);
-    console.log(this.state.fileList[0]);
-  };
+    this.setState({ uploadButton: false, uploaded: true });
+  }
 
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
@@ -80,6 +84,16 @@ Upload
         >
           {fileList.length ? null : uploadButton}
         </Upload>
+        {this.state.uploadButton && (
+        <Button style={{ backgroundColor: '#40c90e', color: '#fff' }} onClick={this.PicUpload}>
+Upload
+        </Button>
+        )}
+        {this.state.uploaded && (
+        <h3 style={{ color: '#40c90e' }}>
+UPLOADED!!!
+        </h3>
+        )}
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
           <img alt="example" style={{ width: '100%' }} src={previewImage} />
         </Modal>

@@ -8,9 +8,7 @@ const userId = () => {
   return user.id;
 };
 
-const id = userId();
 
-
-const PlacesInput = () => <PlacesSearch id={id} />;
+const PlacesInput = () => <PlacesSearch id={userId()} />;
 
 export default PlacesInput;

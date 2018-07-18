@@ -17,3 +17,11 @@ export const getUserQuery = gql`
     }
   }
 `;
+
+export const getUserPicsQuery = gql`
+  query getUserPics($userId: Int!) {
+    getUserPics(userId: $userId) {
+      url
+    }
+  }
+`;
