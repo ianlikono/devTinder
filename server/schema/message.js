@@ -1,10 +1,21 @@
 export default `
-    type Message {
-        id: Int!
-        text: String!
-        team: Team!
-    }
-    type Mutation {
-        createMessage(teamId: Int!, text: String!): Boolean!
-      }
+type Message {
+  id: Int!
+  text: String!
+  sender: User!
+  receiverId: Int!
+  created_at: String!
+}
+
+
+type Subscription {
+    newMessage(teamId: Int!, userId: Int!): Message!
+}
+
+type Query {
+  messages(teamId: Int!, otherUserId: Int!): [Message!]!
+}
+type Mutation {
+  createMessage(receiverId: Int!, text: String!, teamId: Int!): Boolean!
+}
 `;

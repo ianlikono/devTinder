@@ -30,7 +30,7 @@ export default (sequelize, DataTypes) => {
       },
       location: {
         type: DataTypes.STRING,
-        defaultValue: 'Input Location',
+        defaultValue: 'No Location Specified',
       },
       password: {
         type: DataTypes.STRING,

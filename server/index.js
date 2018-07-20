@@ -58,22 +58,28 @@ app.use(
   bodyParser.json(),
   graphqlExpress(req => ({
     schema,
-    context: {
-      models,
-      user: {
-        id: 1,
-      },
-    },
     // context: {
     //   models,
-    //   user: req.user,
-    //   SECRET,
-    //   SECRET2,
+    //   user: {
+    //     id: 1,
+    //   },
     // },
+    context: {
+      models,
+      user: req.user,
+      SECRET,
+      SECRET2,
+    },
   })),
 );
 
-app.use('/graphiql', graphiqlExpress({ endpointURL: graphqlEndpoint }));
+app.use(
+  '/graphiql',
+  graphiqlExpress({
+    endpointURL: graphqlEndpoint,
+    subscriptionsEndpoint: 'ws://localhost:8081/subscriptions',
+  }),
+);
 
 const server = createServer(app);
 
@@ -85,6 +91,19 @@ models.sequelize.sync({}).then(() => {
         execute,
         subscribe,
         schema,
+        onConnect: async ({ token, refreshToken }, webSocket) => {
+          if (token && refreshToken) {
+            try {
+              const { user } = jwt.verify(token, SECRET);
+              return { models, user };
+            } catch (err) {
+              const newTokens = await refreshTokens(token, refreshToken, models, SECRET, SECRET2);
+              return { models, user: newTokens.user };
+            }
+          }
+
+          return { models };
+        },
       },
       {
         server,
@@ -93,4 +112,3 @@ models.sequelize.sync({}).then(() => {
     );
   });
 });
-
