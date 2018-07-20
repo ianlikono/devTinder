@@ -47,7 +47,7 @@ export default () => (
       <PrivateRoute path="/match" exact component={Match} />
       <PrivateRoute path="/profile/:userId" exact component={Profile} />
       <PrivateRoute path="/profile/:userId/edit" exact component={EditProfile} />
-      <PrivateRoute path="/messages/:teamId" exact component={Messages} />
+      <PrivateRoute path="/messages/user/:teamId/:userId" exact component={Messages} />
     </Switch>
   </BrowserRouter>
 );

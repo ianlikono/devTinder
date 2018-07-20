@@ -1,4 +1,5 @@
 import { Card } from 'antd';
+import decode from 'jwt-decode';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -11,24 +12,39 @@ const Wrapper = styled.div`
   box-shadow: 0 1px 10px 0 rgba(0, 17, 25, 0.27);
 `;
 
-export default () => (
-  <Wrapper>
-    <Link to="/messages/1">
-      <Card hoverable style={{ margin: 10, marginTop: 100 }}>
-        <h3 style={{ color: 'red' }}>
-ONGOING
-        </h3>
-        <h2>
-Closures With Someone
-        </h2>
-      </Card>
-    </Link>
-    <Link to="/profile/23">
-      <Card hoverable style={{ margin: 10, marginTop: 100 }}>
-        <h2 style={{ color: '#fd267d' }}>
-UPDATE PROFILE
-        </h2>
-      </Card>
-    </Link>
-  </Wrapper>
-);
+export default class extends React.Component {
+
+
+  userId = () => {
+    const token = localStorage.getItem('token');
+    const { user } = decode(token);
+    return user.id;
+  };
+
+
+  render() {
+    const id = this.userId();
+    const link = `/profile/${id}`;
+    return (
+      <Wrapper>
+        <Link to="/messages/user/1/1">
+          <Card hoverable style={{ margin: 10, marginTop: 100 }}>
+            <h3 style={{ color: 'red' }}>
+    ONGOING
+            </h3>
+            <h2>
+    Closures With Someone
+            </h2>
+          </Card>
+        </Link>
+        <Link to={link}>
+          <Card hoverable style={{ margin: 10, marginTop: 100 }}>
+            <h2 style={{ color: '#fd267d' }}>
+    UPDATE PROFILE
+            </h2>
+          </Card>
+        </Link>
+      </Wrapper>
+    );
+  }
+}

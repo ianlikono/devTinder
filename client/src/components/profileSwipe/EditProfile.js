@@ -1,4 +1,5 @@
 import { Button, Card, Icon, Modal } from 'antd';
+import decode from 'jwt-decode';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ImageUpload from './ImageUpload';
@@ -13,7 +14,7 @@ class EditProfile extends React.Component {
     super(props);
 
     this.state = {
-      ModalText: 'Input Something',
+      ModalText: 'Select Topic',
       visibleBeg: false,
       visibleInt: false,
       visibleExp: false,
@@ -21,8 +22,16 @@ class EditProfile extends React.Component {
       beginnerId: 1,
       intermediateId: 2,
       ExpertId: 3,
+      Editable: true,
     };
   }
+
+  userId = () => {
+    const token = localStorage.getItem('token');
+    const { user } = decode(token);
+    return user.id;
+  };
+
 
   showModalBeg = () => {
     this.setState({
@@ -79,7 +88,7 @@ class EditProfile extends React.Component {
         visibleExp: false,
         confirmLoading: false,
       });
-    }, 2000);
+    }, 1000);
   };
 
   handleCancel = () => {
@@ -101,10 +110,13 @@ class EditProfile extends React.Component {
       beginnerId,
       intermediateId,
       ExpertId,
+      Editable,
     } = this.state;
+    const id = this.userId();
+    const link = `/profile/${id}`;
     return (
       <Wrapper>
-        <Link to="/profile/23">
+        <Link to={link}>
           <Button size="large" style={buttonStyles}>
             Save Info
           </Button>
@@ -136,11 +148,11 @@ class EditProfile extends React.Component {
           >
             Expert:
             {' '}
-            <Expert ExpertId={ExpertId} />
+            <Expert Editable={Editable} ExpertId={ExpertId} />
             <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalExp} />
           </h4>
           <Modal
-            title="Title"
+            title="ADD TOPIC"
             visible={visibleExp}
             onOk={this.handleOkExp}
             confirmLoading={confirmLoading}
@@ -162,11 +174,11 @@ class EditProfile extends React.Component {
           >
             Intermediate:
             {' '}
-            <Intermediate intermediateId={intermediateId} />
+            <Intermediate Editable={Editable} intermediateId={intermediateId} />
             <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalInt} />
           </h4>
           <Modal
-            title="Title"
+            title="ADD TOPIC"
             visible={visibleInt}
             onOk={this.handleOkInt}
             confirmLoading={confirmLoading}
@@ -188,11 +200,11 @@ class EditProfile extends React.Component {
           >
             Beginner
             {' '}
-            <Beginner beginnerId={beginnerId} />
+            <Beginner Editable={Editable} beginnerId={beginnerId} />
             <Icon type="plus-circle" style={{ color: '#fd267d' }} onClick={this.showModalBeg} />
           </h4>
           <Modal
-            title="Title"
+            title="ADD TOPIC"
             visible={visibleBeg}
             onOk={this.handleOkBeg}
             confirmLoading={confirmLoading}

@@ -1,4 +1,5 @@
 import { Button, Card } from 'antd';
+import decode from 'jwt-decode';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ImagesDisplay from './imagesDisplay/ImagesDisplay';
@@ -12,13 +13,25 @@ class ProfileSwipe extends Component {
           beginnerId: 1,
           intermediateId: 2,
           ExpertId: 3,
+          Editable: false,
         }
 
+        userId = () => {
+          const token = localStorage.getItem('token');
+          const { user } = decode(token);
+          return user.id;
+        };
+
+
         render() {
-          const { beginnerId, intermediateId, ExpertId } = this.state;
+          const id = this.userId();
+          const link = `/profile/${id}/edit`;
+          const {
+            beginnerId, intermediateId, ExpertId, Editable,
+          } = this.state;
           return (
             <Wrapper>
-              <Link to="/profile/23/edit">
+              <Link to={link}>
                 <Button size="large" style={buttonStyles}>
         Edit Info
                 </Button>
@@ -30,14 +43,14 @@ class ProfileSwipe extends Component {
 EXPERT:
                   </b>
                   {' '}
-                  <Expert ExpertId={ExpertId} />
+                  <Expert Editable={Editable} ExpertId={ExpertId} />
                 </Expertise>
                 <Expertise>
                   <b>
 INTERMEDIATE:
                   </b>
                   {' '}
-                  <Intermediate intermediateId={intermediateId} />
+                  <Intermediate Editable={Editable} intermediateId={intermediateId} />
                 </Expertise>
                 <Expertise>
                   <b>
@@ -45,7 +58,7 @@ INTERMEDIATE:
 Beginner:
                   </b>
                   {' '}
-                  <Beginner beginnerId={beginnerId} />
+                  <Beginner Editable={Editable} beginnerId={beginnerId} />
                 </Expertise>
               </Card>
             </Wrapper>

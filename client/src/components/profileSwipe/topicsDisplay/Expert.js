@@ -15,6 +15,8 @@ class Expert extends Component {
 
   render() {
     const { levelId } = this.state;
+    const { Editable } = this.props;
+    const closable = Editable && true;
     return (
       <Query
         query={ProfileTopicsQuery}
@@ -29,7 +31,7 @@ class Expert extends Component {
           return (
             <div>
               {data.getProfileTopics.map(topic => (
-                <Tag key={topic.id} color={this.state.tagColor}>
+                <Tag closable={closable} key={topic.id} color={this.state.tagColor}>
                   {topic.name}
                 </Tag>
               ))}

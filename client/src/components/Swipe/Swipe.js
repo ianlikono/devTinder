@@ -4,11 +4,10 @@ import { Wrapper } from './SwipeStyles';
 
 
 class Swipe extends Component {
-
   render() {
     return (
       <Wrapper>
-          <UserToMatch />
+        <UserToMatch />
       </Wrapper>
     );
   }
