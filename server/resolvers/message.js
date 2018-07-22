@@ -26,7 +26,7 @@ export default {
     },
   },
   Query: {
-    messages: requiresAuth.createResolver(async (parent, { teamId, otherUserId }, { models, user }) => models.Message.findAll(
+    messages: async (parent, { teamId, otherUserId }, { models, user }) => models.Message.findAll(
       {
         order: [['created_at', 'ASC']],
         where: {
@@ -42,7 +42,7 @@ export default {
         },
       },
       { raw: true },
-    )),
+    ),
   },
   Mutation: {
     createMessage: requiresAuth.createResolver(async (parent, args, { models, user }) => {
