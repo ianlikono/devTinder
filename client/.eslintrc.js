@@ -9,6 +9,8 @@ module.exports = {
     'react/destructuring-assignment': 0,
     'react/prefer-stateless-function': 0,
     'no-useless-constructor': 0,
+    'react/no-find-dom-node': 0,
+    'react/sort-comp': 0,
   },
   globals: {
     document: 1,

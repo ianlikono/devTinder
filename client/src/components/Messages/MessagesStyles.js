@@ -3,19 +3,14 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   background: #d8d6d6;
-  width: 80vw;
   display: flex;
 `;
 
-export const MessagesContainer = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  overflow-y: auto;
-`;
 
 export const MessagesWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
 `;
 export const Sender = styled.div`
   left: 0;

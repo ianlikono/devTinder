@@ -1,12 +1,10 @@
 /* eslint-disable */
 
-import { Card } from 'antd';
 import gql from 'graphql-tag';
+import decode from 'jwt-decode';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
-import decode from 'jwt-decode';
-import { Expertise } from '../SwipeStyles';
-import UserData from './UserData';
+import UserSwipe from '../swipe/UserSwipe';
 
 
 const allUsersQuery = gql`
@@ -62,15 +60,13 @@ class UserToMatch extends Component {
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
-
-          const usersToSwipe = data.allUsers.filter(user => user.id != currentUserId)
-
           return (
-            <React.Fragment>
-            <Card hoverable style={{ width: 450, height: 600 }}>
-            <UserData userData={usersToSwipe}/>
-            </Card>
-            </React.Fragment>
+            <div>
+            <div id='draggcard'>
+            {/* <UserData userData={usersToSwipe}/> */}
+              <UserSwipe />
+            </div>
+            </div>
           );
         }}
       </Query>

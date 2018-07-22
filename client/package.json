@@ -13,6 +13,7 @@
     "apollo-link-ws": "^1.0.8",
     "apollo-utilities": "^1.0.16",
     "axios": "^0.18.0",
+    "bulma": "^0.7.1",
     "classnames": "^2.2.6",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
