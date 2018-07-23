@@ -16,6 +16,7 @@ class UserLocation extends Component {
 
     return (
       <Query
+        pollInterval={500}
         query={getUserQuery}
         variables={{
           id,

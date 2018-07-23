@@ -25,3 +25,12 @@ export const getUserPicsQuery = gql`
     }
   }
 `;
+
+export const GetUserTeams = gql`
+{
+  allUserTeams {
+    name
+    id
+  }
+}
+`;

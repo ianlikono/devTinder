@@ -103,11 +103,11 @@ componentWillUnmount() {
 
 render() {
   return (
-      <Card
-        {...this.props}
-        style={{ transform: `translate3d(${this.state.x}px, ${this.state.y}px, 0px)` }}
-        classes={{ animate: this.state.animation }}
-      />
+    <Card
+      {...this.props}
+      style={{ transform: `translate3d(${this.state.x}px, ${this.state.y}px, 0px)` }}
+      classes={{ animate: this.state.animation }}
+    />
   );
 }
 }

@@ -124,16 +124,16 @@ class EditProfile extends React.Component {
         <Card hoverable style={{ width: 450, height: 600 }}>
           <ImageWrapper>
             <Card hoverable style={{ width: 200, height: 200, marginTop: 3 }}>
-              <ImageUpload />
+              <ImageUpload id={id} />
             </Card>
             <Card hoverable style={{ width: 200, height: 200, marginTop: 3 }}>
-              <ImageUpload />
+              <ImageUpload id={id} />
             </Card>
             <Card hoverable style={{ width: 200, height: 200, marginTop: 3 }}>
-              <ImageUpload />
+              <ImageUpload id={id} />
             </Card>
             <Card hoverable style={{ width: 200, height: 200, marginTop: 3 }}>
-              <ImageUpload />
+              <ImageUpload id={id} />
             </Card>
           </ImageWrapper>
 

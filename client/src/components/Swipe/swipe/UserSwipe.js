@@ -35,6 +35,7 @@ class UserSwipe extends Component {
         variables: {
           likes: cardId,
         },
+
       });
       const matchResponse = await this.props.client.query({
         query: gql`
@@ -46,25 +47,31 @@ class UserSwipe extends Component {
       });
       if (matchResponse.data.Match) {
         this.setState({ visible: true });
+        // await this.props.client.mutate({
+        //   variables: {
+        //     name: 'from Client',
+        //   },
+        // });
       }
     }
   }
 
   startConversation = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
   }
 
   keepSwiping = (e) => {
-    console.log(e);
+    // console.log(e);
     this.setState({
       visible: false,
     });
   };
 
   render() {
+    // console.log(this.props.mutate);
     const cards = this.state.cards
       .map((c, index, arr) => {
         const props = {

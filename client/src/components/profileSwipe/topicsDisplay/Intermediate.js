@@ -19,6 +19,7 @@ class Intermediate extends Component {
     const closable = Editable && true;
     return (
       <Query
+        pollInterval={500}
         query={ProfileTopicsQuery}
         variables={{
           levelId,

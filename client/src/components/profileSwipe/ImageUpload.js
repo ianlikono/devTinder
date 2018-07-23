@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import moment from 'moment';
 import React, { Component } from 'react';
 import { compose, graphql } from 'react-apollo';
+import { getUserPicsQuery } from '../../graphql/topics';
 
 class ImageUpload extends Component {
   state = {
@@ -59,11 +60,18 @@ class ImageUpload extends Component {
       variables: {
         url,
       },
+      refetchQueries: [
+        {
+          query: getUserPicsQuery,
+          variables: { id: this.props.id },
+        },
+      ],
     });
     this.setState({ uploadButton: false, uploaded: true });
   }
 
   render() {
+    // console.log(this.props);
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
       <div>

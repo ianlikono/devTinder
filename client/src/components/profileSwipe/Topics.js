@@ -39,7 +39,7 @@ class Topics extends Component {
   render() {
     const Option = Select.Option;
     return (
-      <Query query={TopicsQuery}>
+      <Query query={TopicsQuery} pollInterval={500}>
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
