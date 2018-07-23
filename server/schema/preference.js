@@ -6,8 +6,11 @@ export default `
         ok: Boolean!
         errors: [Error!]
     }
+    type MatchResponse {
+        ok: Boolean!
+    }
     type Query {
-        Match(userToMatchId: Int!): User
+        Match(userId: Int!): Boolean!
     }
     type Mutation {
         likeUser(likes: Int!): createPreferenceResponse!

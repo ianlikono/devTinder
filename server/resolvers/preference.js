@@ -2,15 +2,18 @@ import formatErrors from '../formatErrors';
 
 export default {
   Query: {
-    // Match: (parent, args, { models, user }) => models.sequelize.query(
-    //   `select topics.name, topics.id from topics join profiles on profiles.topic_id = topics.id join users on users.id = profiles.user_id where users.id = ${
-    //     user.id
-    //   } and profiles.level_id = ${args.levelId}`,
-    //   {
-    //     model: models.Topic,
-    //     raw: true,
-    //   },
-    // ),
+
+    Match: async (parent, args, { models, user }) => {
+      const response = await models.Preference.findAll({ where: { userId: args.userId } });
+      const liked = [];
+      for (let i = 0; i < response.length; i++) {
+        if (response[i].dataValues.likes == user.id) {
+          liked.push(response[i].dataValues.likes);
+        }
+      }
+      return liked.length > 0 && true;
+    },
+
   },
   Mutation: {
     // eslint-disbale
