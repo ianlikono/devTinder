@@ -15,7 +15,6 @@
 .env.local
 .env.development.local
 .env.test.local
-public/index.html
 .env.production.local
 
 npm-debug.log*
