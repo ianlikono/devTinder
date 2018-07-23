@@ -7,6 +7,14 @@ import { Query } from 'react-apollo';
 import UserSwipe from '../swipe/UserSwipe';
 
 
+function shuffle(a) {
+  for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 const allUsersQuery = gql`
   {
     allUsers {
@@ -62,10 +70,11 @@ class UserToMatch extends Component {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
           const usersToSwipe = data.allUsers.filter(user => user.id != currentUserId)
+          const passedData = shuffle(usersToSwipe)
           return (
             <div>
             <div id='draggcard'>
-              <UserSwipe userData={usersToSwipe}/>
+              <UserSwipe userData={passedData}/>
             </div>
             </div>
           );

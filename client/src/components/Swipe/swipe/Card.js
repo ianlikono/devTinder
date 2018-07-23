@@ -66,7 +66,7 @@ export default class Card extends Component {
             </Location>
           </Header>
         </div>
-        <img style={{ width: '100%', height: 250, marginBottom: '50px' }} src={this.props.pic} alt="Sorry Nothing To Show" />
+        <img style={{ width: '100%', height: 250, marginBottom: '50px', objectFit: 'cover' }} src={this.props.pic} alt="Sorry Nothing To Show" />
         <h3>
 Expert:
         </h3>
