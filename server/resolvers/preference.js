@@ -11,6 +11,18 @@ export default {
           liked.push(response[i].dataValues.likes);
         }
       }
+      if (liked.length > 0) {
+        const TeamName = { name: 'scorpio' };
+        await models.sequelize.transaction(async (transaction) => {
+          const team = await models.Team.create({ ...TeamName }, { transaction });
+          await models.Member.create(
+            { teamId: team.id, userId: user.id, admin: true },
+            { transaction },
+          );
+          await models.Member.create({ userId: args.userId, teamId: team.id }, { transaction });
+          return team;
+        });
+      }
       return liked.length > 0 && true;
     },
 
