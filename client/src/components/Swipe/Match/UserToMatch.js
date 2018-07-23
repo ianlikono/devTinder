@@ -13,6 +13,7 @@ const allUsersQuery = gql`
       id
       email
       username
+      location
       pics {
           url
       }
@@ -60,11 +61,11 @@ class UserToMatch extends Component {
         {({ loading, error, data }) => {
           if (loading) return 'Loading...';
           if (error) return `Error! ${error.message}`;
+          const usersToSwipe = data.allUsers.filter(user => user.id != currentUserId)
           return (
             <div>
             <div id='draggcard'>
-            {/* <UserData userData={usersToSwipe}/> */}
-              <UserSwipe />
+              <UserSwipe userData={usersToSwipe}/>
             </div>
             </div>
           );

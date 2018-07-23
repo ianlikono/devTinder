@@ -32,7 +32,6 @@ resetPosition = () => {
     initialPosition,
     startPosition: { x: 0, y: 0 },
   });
-  console.log(this.state.x, this.state.y)
 }
 
 panstart = () => {
@@ -57,6 +56,7 @@ panend = (ev) => {
 
 panmove = (ev) => {
   this.setState(this.calculatePosition(ev.deltaX, ev.deltaY));
+  // this.setState({ visible: true });
 }
 
 handlePan(ev) {
@@ -103,11 +103,11 @@ componentWillUnmount() {
 
 render() {
   return (
-    <Card
-      {...this.props}
-      style={{ transform: `translate3d(${this.state.x}px, ${this.state.y}px, 0px)` }}
-      classes={{ animate: this.state.animation }}
-    />
+      <Card
+        {...this.props}
+        style={{ transform: `translate3d(${this.state.x}px, ${this.state.y}px, 0px)` }}
+        classes={{ animate: this.state.animation }}
+      />
   );
 }
 }
