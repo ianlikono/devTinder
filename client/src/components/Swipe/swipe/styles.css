@@ -1,22 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Muli|Amatic+SC:700|Indie+Flower');
-@import url('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css');
-
+@import url("https://fonts.googleapis.com/css?family=Muli|Amatic+SC:700|Indie+Flower");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.1/css/bulma.min.css");
 
 .card {
-  background-color: #fcb315;
+  background-color: #fff;
   background-size: cover;
   box-shadow: 0px 0px 5px snow;
   position: absolute;
-  height: 600px;
+  height: 500px;
   width: 368px;
   margin: -8em auto;
   border-radius: 10px;
   z-index: 100;
   cursor: pointer;
+  margin-top: 30px;
 }
 
-
-
 .animate {
-  transition: transform .3s;
+  transition: transform 0.3s;
 }

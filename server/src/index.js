@@ -14,7 +14,6 @@ import models from './models';
 
 const { SECRET, SECRET2, PORT } = process.env;
 
-
 require('dotenv').config();
 
 const typeDefs = mergeTypes(fileLoader(path.join(__dirname, './schema')));
@@ -58,17 +57,12 @@ app.use(
   bodyParser.json(),
   graphqlExpress(req => ({
     schema,
-    // context: {
-    //   models,
-    //   user: {
-    //     id: 1,
-    //   },
-    // },
     context: {
       models,
       user: req.user,
       SECRET,
       SECRET2,
+      serverUrl: `${req.protocol}://${req.get('host')}`,
     },
   })),
 );

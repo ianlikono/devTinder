@@ -13,7 +13,7 @@ const Header = styled.div`
   display: inline;
 `;
 const Location = styled.span`
- color: #08af13;
+  color: #08af13;
 `;
 
 export default class Card extends Component {
@@ -43,17 +43,21 @@ export default class Card extends Component {
       y: Math.round((screen.offsetHeight - card.offsetHeight) / 2),
     };
     this.setState({ initialPosition });
-  }
+  };
 
   render() {
-    const style = Object.assign({
-      transform: `translate3d(${this.state.initialPosition.x}px, ${this.state.initialPosition.y}px, 0px)`,
-      zIndex: this.props.index,
-      //   backgroundImage: `url("${this.props.image}")`,
-      background: '#fff',
-      backgroundSize: 'contain',
-      backgroundRepeat: 'no-repeat',
-    }, this.props.style);
+    const style = Object.assign(
+      {
+        transform: `translate3d(${this.state.initialPosition.x}px, ${
+          this.state.initialPosition.y
+        }px, 0px)`,
+        zIndex: this.props.index,
+        background: '#fff',
+        backgroundSize: 'contain',
+        backgroundRepeat: 'no-repeat',
+      },
+      this.props.style,
+    );
     return (
       <div style={style} className={cx({ card: true }, this.props.classes)}>
         <div style={{ borderBottom: '5px solid red', padding: '15px' }}>
@@ -62,35 +66,47 @@ export default class Card extends Component {
               {this.props.username}
             </Username>
             <Location>
-            {this.props.location}
+              {this.props.location}
             </Location>
           </Header>
         </div>
-        <img style={{ width: '100%', height: 250, marginBottom: '50px', objectFit: 'cover' }} src={this.props.pic} alt="Sorry Nothing To Show" />
+        <img
+          style={{
+            width: '100%',
+            height: 200,
+            marginBottom: '50px',
+            objectFit: 'cover',
+          }}
+          src={this.props.pic}
+          alt="Sorry Nothing To Show"
+        />
         <h3>
 Expert:
         </h3>
-        {this.props.expert.length && this.props.expert.map(topic => (
-          <Tag key={topic.id} color="red">
-            {topic.name}
-          </Tag>
-        ))}
+        {this.props.expert.length
+          && this.props.expert.map(topic => (
+            <Tag key={topic.id} color="red">
+              {topic.name}
+            </Tag>
+          ))}
         <h3>
 Intermediate:
         </h3>
-        {this.props.intermediate.length && this.props.intermediate.map(topic => (
-          <Tag key={topic.id} color="blue">
-            {topic.name}
-          </Tag>
-        ))}
+        {this.props.intermediate.length
+          && this.props.intermediate.map(topic => (
+            <Tag key={topic.id} color="blue">
+              {topic.name}
+            </Tag>
+          ))}
         <h3>
 Beginner:
         </h3>
-        {this.props.beginner.length && this.props.beginner.map(topic => (
-          <Tag key={topic.id} color="green">
-            {topic.name}
-          </Tag>
-        ))}
+        {this.props.beginner.length
+          && this.props.beginner.map(topic => (
+            <Tag key={topic.id} color="green">
+              {topic.name}
+            </Tag>
+          ))}
       </div>
     );
   }

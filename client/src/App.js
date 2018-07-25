@@ -4,7 +4,6 @@ import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import EditProfile from './pages/EditProfile';
-import Home from './pages/Home';
 import Match from './pages/Match';
 import Messages from './pages/Messages';
 import Profile from './pages/Profile';
@@ -41,7 +40,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 export default () => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" exact component={Home} />
+      <PrivateRoute path="/" exact component={Match} />
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <PrivateRoute path="/match" exact component={Match} />
