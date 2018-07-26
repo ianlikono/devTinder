@@ -4,8 +4,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (sequelize, DataTypes) {
-  var Preference = sequelize.define('preference', {
+exports.default = (sequelize, DataTypes) => {
+  const Preference = sequelize.define('preference', {
     likes: {
       type: DataTypes.STRING
     },
@@ -14,7 +14,7 @@ exports.default = function (sequelize, DataTypes) {
     }
   });
 
-  Preference.associate = function (models) {
+  Preference.associate = models => {
     Preference.belongsTo(models.User, {
       foreignKey: {
         name: 'userId',

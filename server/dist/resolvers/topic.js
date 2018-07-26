@@ -12,20 +12,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = {
   Query: {
-    allTopics: function allTopics(parent, args, _ref) {
-      var models = _ref.models;
-      return models.Topic.findAll();
-    }
+    allTopics: (parent, args, { models }) => models.Topic.findAll()
   },
   Mutation: {
-    createTopic: function createTopic(parent, args, _ref2) {
-      var models = _ref2.models;
-
+    createTopic: (parent, args, { models }) => {
       try {
-        var topic = models.Topic.create(args);
+        const topic = models.Topic.create(args);
         return {
           ok: true,
-          topic: topic
+          topic
         };
       } catch (err) {
         return {

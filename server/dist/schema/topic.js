@@ -3,4 +3,23 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = "\n    type Topic {\n        id: Int!\n        name: String!\n    }\n\n    type CreateTopicResponse {\n        ok: Boolean!\n        topic: Topic\n        errors: [Error!]\n    }\n\n    type Query {\n        allTopics: [Topic!]!\n    }\n\n    type Mutation {\n        createTopic(name: String!): CreateTopicResponse!\n      }\n";
+exports.default = `
+    type Topic {
+        id: Int!
+        name: String!
+    }
+
+    type CreateTopicResponse {
+        ok: Boolean!
+        topic: Topic
+        errors: [Error!]
+    }
+
+    type Query {
+        allTopics: [Topic!]!
+    }
+
+    type Mutation {
+        createTopic(name: String!): CreateTopicResponse!
+      }
+`;

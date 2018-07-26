@@ -4,14 +4,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-exports.default = function (sequelize, DataTypes) {
-  var Level = sequelize.define('level', {
+exports.default = (sequelize, DataTypes) => {
+  const Level = sequelize.define('level', {
     name: {
       type: DataTypes.STRING
     }
   });
 
-  Level.associate = function (models) {
+  Level.associate = models => {
     Level.belongsToMany(models.Topic, {
       through: models.Profile,
       foreignKey: {

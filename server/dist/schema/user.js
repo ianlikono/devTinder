@@ -3,4 +3,43 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = "\n    type User {\n        id: Int!\n        username: String!\n        email: String!\n        location: String!\n        pics: [Pic]\n        teams: [Team]\n        expert: [Topic]\n        intermediate: [Topic]\n        beginner: [Topic]\n    }\n\n    type RegisterResponse {\n        ok: Boolean!\n        user: User\n        errors: [Error!]\n    }\n\n    type LoginResponse {\n        ok: Boolean!\n        token: String\n        refreshToken: String\n        errors: [Error!]\n    }\n\n\n   type Query {\n        getUser(id: Int!): User!\n        allUsers: [User!]!\n        countAllUsers: Int!\n        getUsersToMatch(location: String!): [User!]\n    }\n\n   type Mutation {\n        register(username: String!, email: String!, password: String!): RegisterResponse!\n        login(email: String!, password: String!): LoginResponse!\n        updateLocation(location: String!): Boolean!\n    }\n";
+exports.default = `
+    type User {
+        id: Int!
+        username: String!
+        email: String!
+        location: String!
+        pics: [Pic]
+        teams: [Team]
+        expert: [Topic]
+        intermediate: [Topic]
+        beginner: [Topic]
+    }
+
+    type RegisterResponse {
+        ok: Boolean!
+        user: User
+        errors: [Error!]
+    }
+
+    type LoginResponse {
+        ok: Boolean!
+        token: String
+        refreshToken: String
+        errors: [Error!]
+    }
+
+
+   type Query {
+        getUser(id: Int!): User!
+        allUsers: [User!]!
+        countAllUsers: Int!
+        getUsersToMatch(location: String!): [User!]
+    }
+
+   type Mutation {
+        register(username: String!, email: String!, password: String!): RegisterResponse!
+        login(email: String!, password: String!): LoginResponse!
+        updateLocation(location: String!): Boolean!
+    }
+`;

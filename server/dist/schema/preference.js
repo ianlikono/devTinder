@@ -3,4 +3,22 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.default = "\n    type Preference {\n        user: User!\n    }\n    type createPreferenceResponse {\n        ok: Boolean!\n        errors: [Error!]\n    }\n    type MatchResponse {\n        ok: Boolean!\n    }\n    type Query {\n        Match(userId: Int!): Boolean!\n    }\n    type Mutation {\n        likeUser(likes: Int!): createPreferenceResponse!\n        disLikeUser(dislikes: Int!): createPreferenceResponse!\n      }\n";
+exports.default = `
+    type Preference {
+        user: User!
+    }
+    type createPreferenceResponse {
+        ok: Boolean!
+        errors: [Error!]
+    }
+    type MatchResponse {
+        ok: Boolean!
+    }
+    type Query {
+        Match(userId: Int!): Boolean!
+    }
+    type Mutation {
+        likeUser(likes: Int!): createPreferenceResponse!
+        disLikeUser(dislikes: Int!): createPreferenceResponse!
+      }
+`;
