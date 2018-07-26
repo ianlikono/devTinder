@@ -1,11 +1,19 @@
-import { Button, Form, Icon, Input } from 'antd';
+import {
+  Button, Form, Icon, Input,
+} from 'antd';
 import gql from 'graphql-tag';
 import { extendObservable } from 'mobx';
 import { observer } from 'mobx-react';
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import { Link } from 'react-router-dom';
-import { buttonStyles, LoginButton, LoginContainer, LoginWrapper, RegisterWrapper } from './loginStyles';
+import {
+  buttonStyles,
+  LoginButton,
+  LoginContainer,
+  LoginWrapper,
+  RegisterWrapper,
+} from './loginStyles';
 
 const FormItem = Form.Item;
 
@@ -60,8 +68,8 @@ class Login extends Component {
     return (
       <LoginWrapper>
         <LoginContainer>
-          <h2>
-Login Header
+          <h2 style={{ fontSize: '20px' }}>
+Login
           </h2>
           <Form>
             <FormItem help={emailError} validateStatus={emailError && 'error'}>

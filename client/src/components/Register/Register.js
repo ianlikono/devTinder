@@ -69,8 +69,8 @@ class Register extends Component {
     return (
       <LoginWrapper>
         <LoginContainer>
-          <h2>
-Register Header
+          <h2 style={{ fontSize: '20px' }}>
+Register
           </h2>
           <Form>
             <FormItem help={usernameError} validateStatus={usernameError && 'error'}>

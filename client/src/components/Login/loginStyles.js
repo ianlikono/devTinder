@@ -13,7 +13,7 @@ export const LoginWrapper = styled.div`
 
 export const LoginContainer = styled.div`
   background: #fff;
-  padding: 10%;
+  padding: 20%;
   margin-left: 35%;
   margin-right: 35%;
   margin-top: 2%;
