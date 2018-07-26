@@ -11,6 +11,7 @@ import path from 'path';
 import { SubscriptionServer } from 'subscriptions-transport-ws';
 import { refreshTokens } from './auth';
 import getModels from './models';
+
 require('dotenv').config();
 
 
@@ -55,7 +56,6 @@ getModels().then((models) => {
         }
         req.user = newTokens.user;
         // console.log(req.user)
-
       }
     }
     next();

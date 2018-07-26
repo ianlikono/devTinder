@@ -40,6 +40,8 @@ var _models2 = _interopRequireDefault(_models);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+require('dotenv').config();
+
 const { SECRET, SECRET2 } = process.env;
 
 const typeDefs = (0, _mergeGraphqlSchemas.mergeTypes)((0, _mergeGraphqlSchemas.fileLoader)(_path2.default.join(__dirname, './schema')));
@@ -80,6 +82,7 @@ const server = (0, _http.createServer)(app);
           res.set('x-refresh-token', newTokens.refreshToken);
         }
         req.user = newTokens.user;
+        // console.log(req.user)
       }
     }
     next();
@@ -89,6 +92,7 @@ const server = (0, _http.createServer)(app);
 
   app.use(graphqlEndpoint, _bodyParser2.default.json(), (0, _apolloServerExpress.graphqlExpress)(req => ({
     schema,
+    // console.log(req.user);
     context: {
       models,
       user: req.user,
