@@ -6,7 +6,7 @@ import { createHttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:8081/graphql' });
+const httpLink = createHttpLink({ uri: `http://${process.env.REACT_APP_SERVER_URL}/graphql` });
 
 const middlewareLink = setContext(() => ({
   headers: {
@@ -16,7 +16,9 @@ const middlewareLink = setContext(() => ({
 }));
 
 const afterwareLink = new ApolloLink((operation, forward) => forward(operation).map((response) => {
-  const { response: { headers } } = operation.getContext();
+  const {
+    response: { headers },
+  } = operation.getContext();
   if (headers) {
     const token = headers.get('x-token');
     const refreshToken = headers.get('x-refresh-token');
@@ -33,12 +35,10 @@ const afterwareLink = new ApolloLink((operation, forward) => forward(operation).
   return response;
 }));
 
-const httpLinkWithMiddleware = afterwareLink.concat(
-  middlewareLink.concat(httpLink),
-);
+const httpLinkWithMiddleware = afterwareLink.concat(middlewareLink.concat(httpLink));
 
 const wsLink = new WebSocketLink({
-  uri: 'ws://localhost:8081/subscriptions',
+  uri: `ws://${process.env.REACT_APP_SERVER_URL}/subscriptions`,
   options: {
     reconnect: true,
     connectionParams: {
